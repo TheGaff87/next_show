@@ -3,13 +3,21 @@
     font-family: "Montserrat", sans-serif;
 }
 
-header, h2 {
+header, h2, h3 {
     text-align: center;
+}
+
+header {
+    border: 1px black solid;
 }
 
 form {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+}
+
+button {
+    margin-top: 1em;
 }
 
