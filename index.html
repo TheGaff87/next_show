@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="An app that helps you find TV shows you might like based on your preferences and shows you were you can watch your newly found shows">
+  <title>Next Show</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Merienda+One|Montserrat" rel="stylesheet" type="text/css">
+  <link href="main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <h1>Next Show: Find Your Next Bingeworthy Show </h1>
+  </header>
+  <main role="main">
+    <p class="welcome"><h2>Welcome to Next Show!</h2></p>
+    <p><h2>Enter one or more TV shows you like in the search box below to find more shows you might enjoy.</h2></p>
+    <form action="/submit/" method="post" class="searchForm">
+      <label>
+        <input type="text" size="45" name="response" class="response" aria-label="response" placeholder="Enter one or more TV shows separated by commas">
+      </label>
+      <button type="submit" class="submit">Search</button>
+    </form>
+    <section role="region" class="results" aria-live="assertive" hidden>
+    </section>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
