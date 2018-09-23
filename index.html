@@ -12,24 +12,30 @@
 </head>
 
 <body>
-  <header>
+  <header class="col-12">
+    <div class="row">
     <h1>Next Show</h1>
     <h2>Find your next bingeworthy TV show</h2>
+    </div>
   </header>
-  <main role="main">
+  <div class="row">
+  <main role="main" class="col-12">
+    <section>
     <p class="welcome"><h3>Welcome to Next Show!</h3></p>
-    <p><h3>Enter a TV show in the search field to find similar shows.</h3></p>
     <form action="/submit/" method="post" class="searchForm">
       <label>
-        <input type="text" size="45" name="response" class="response" aria-label="response" placeholder="Enter one or more TV shows separated by commas">
+        <input type="text" size="45" name="response" class="response" aria-label="response" placeholder="Enter your favorite TV show">
       </label>
       <button type="submit" class="submit">Search</button>
     </form>
+    </section>
     <section role="region" class="results" aria-live="assertive" hidden>
     </section>
   </main>
+  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="main.js"></script>
+  </div>
 </body>
 
 </html>
