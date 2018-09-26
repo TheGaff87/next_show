@@ -50,7 +50,10 @@ header {
 }
 
 .submit {
+    display: block;
     margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button[type="button"] {
@@ -93,6 +96,10 @@ img {
 }
 
 .js-results-div {
+    width: 100%;
+}
+
+input {
     width: 100%;
 }
 
