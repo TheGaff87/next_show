@@ -92,12 +92,6 @@ img {
     height: 3em;
 }
 
-.js-wiki {
-    width: 400px;
-    float: left;
-    margin-right: 50px;
-}
-
 @media only screen and (min-width: 560px) {
     form {
         width: 55%;
