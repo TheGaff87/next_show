@@ -50,7 +50,7 @@ function displaySimilar(query) {
             <button class="${i}" type="button" data-featherlight="#mylightbox${i}">${query[i].Name}</button>
             <article class="${i} hidden col-12" id="mylightbox${i}">
                 <p class="js-wiki col-6">${query[i].wTeaser}<br><br>
-                <a href="${query[i].wUrl}" target="_blank">Read more on Wikipedia</a></p>
+                <a href="${query[i].wUrl}" target="_blank">Read more about ${query[i].Name} on Wikipedia</a></p>
                 <iframe width="500" height="315" class="col-6" src="https://www.youtube.com/embed/${query[i].yID}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </article>
         </div>`)

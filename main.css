@@ -92,6 +92,10 @@ img {
     height: 3em;
 }
 
+.js-results-div {
+    width: 100%;
+}
+
 @media only screen and (min-width: 560px) {
     form {
         width: 55%;
