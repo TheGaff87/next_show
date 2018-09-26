@@ -67,6 +67,7 @@ div:not(.row) {
 
 article {
     margin-bottom: 1em;
+    width: 900px;
 }
 
 .js-where-watch {
@@ -88,7 +89,13 @@ iframe {
 
 img {
     width: 100px;
-    height: 2.5em;
+    height: 3em;
+}
+
+.js-wiki {
+    width: 400px;
+    float: left;
+    margin-right: 50px;
 }
 
 @media only screen and (min-width: 560px) {

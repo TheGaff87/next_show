@@ -47,11 +47,11 @@ function displaySimilar(query) {
     for (i = 0; i < query.length; i++) {
         $(".results").append(`
         <div class="${i}">
-            <button class="${i}" type="button">${query[i].Name}</button>
-            <article class="${i} hidden col-12">
-                <p class="col-6">${query[i].wTeaser}<br><br>
+            <button class="${i}" type="button" data-featherlight="#mylightbox${i}">${query[i].Name}</button>
+            <article class="${i} hidden" id="mylightbox${i}">
+                <p class="js-wiki">${query[i].wTeaser}<br><br>
                 <a href="${query[i].wUrl}" target="_blank">Read more on Wikipedia</a></p>
-                <iframe width="500" height="315" class="col-6" src="https://www.youtube.com/embed/${query[i].yID}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="450" height="315" src="https://www.youtube.com/embed/${query[i].yID}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </article>
         </div>`)
     }
@@ -61,6 +61,7 @@ function dataHandler (data) {
   tasteDiveResults = data.Similar.Results;
   displayResults(data);
   processResults(tasteDiveResults);
+  console.log(tasteDiveResults);
 }
 
 function processResults(data) {
@@ -105,11 +106,6 @@ function displayResults(data) {
     const resultsList = data.Similar.Results;
     displaySearched(searchedTerm);
     displaySimilar(resultsList);
-    $(".results").on("click", "button", function (event) {
-        const num = $(this).attr("class");
-        $("article").css("display", "none");
-        $("article." + num).css("display", "block");
-    })
 }
 
 function handleSubmit() {
