@@ -7,13 +7,13 @@
   <meta name="description" content="An app that helps you find TV shows you might like based on your preferences and shows you were you can watch your newly found shows">
   <title>Next Show</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Merienda+One|Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Merienda+One|Montserrat" rel="stylesheet">
   <link href="featherlight.css" type="text/css" rel="stylesheet" />
   <link href="main.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <header class="col-12">
+  <header class="col-12" role="banner">
     <div class="row">
     <h1>Next Show</h1>
     <h2>Find your next bingeworthy TV show</h2>
@@ -21,7 +21,7 @@
   </header>
   <div class="row">
   <main role="main" class="col-12">
-    <section>
+    <section role="region">
     <p class="welcome"><h3>Welcome to Next Show!</h3></p>
     <form action="/submit/" method="post" class="searchForm">
       <label>

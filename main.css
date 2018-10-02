@@ -32,12 +32,26 @@
   width: 100%;
 }
 
-header, h2, h3 {
+h1, h2, h3 {
     text-align: center;
 }
 
+h1, h2 {
+    font-family: 'Merienda One', cursive;
+}
+
 header {
-    background-color: black;
+    background-color: #2718c7;
+    color: white;
+}
+
+a {
+    color: #2718c7;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #2718c7;
     color: white;
 }
 
@@ -47,6 +61,11 @@ header {
     margin-right: auto;
     margin-top: 3em;
     margin-bottom: 3em;
+}
+
+.js-response-term {
+    color: red;
+    font-weight: bold;
 }
 
 .submit {

@@ -1,10 +1,11 @@
 let tasteDiveResults;
+let response;
 
 function getDataFromTasteDive(searchTerm, callback) {
   const settings = {
     url: "https://tastedive.com/api/similar",
     data: {
-      q: searchTerm,
+      q: "show:" + searchTerm,
       k: "320256-test-VZMF4T55",
       type: "shows",
       info: 1
@@ -35,11 +36,11 @@ function getDataFromUTelly(searchTerm, callback) {
     $.ajax(settings);
   }
 
-function displaySearched(query) {
-    if (query.Type !== "unknown") {
-        $(".results").append(`<p class="js-searched"><h3>If you like <a href="${query.wUrl}" target="_blank">${query.Name}</a>, you might also like these 20 shows:</h3></p>`)
+function displaySearched(array, name) {
+    if (name.Type !== "unknown" && array.Results.length > 0 ) {
+        $(".results").append(`<p class="js-searched"><h3>If you like <a href="${name.wUrl}" target="_blank">${name.Name}</a>, you might also like these shows:</h3></p>`)
     } else {
-        $(".results").append(`<p class="js-not-found"><h3>Sorry, I couldn't find that show. Please try again.</h3></p>`)
+        $(".results").append(`<p class="js-not-found"><h3>Sorry, I couldn't find <span class="js-response-term">${response}</span>. Please try again.</h3></p>`)
     }
 }
 
@@ -58,10 +59,9 @@ function displaySimilar(query) {
 }
 
 function dataHandler (data) {
-  tasteDiveResults = data.Similar.Results;
-  displayResults(data);
-  processResults(tasteDiveResults);
-  console.log(tasteDiveResults);
+    tasteDiveResults = data.Similar.Results;
+    displayResults(data);
+    processResults(tasteDiveResults);
 }
 
 function processResults(data) {
@@ -102,16 +102,17 @@ function displayWhereWatch(data) {
 }
 
 function displayResults(data) {
+    const searchedArray = data.Similar;
     const searchedTerm = data.Similar.Info[0];
     const resultsList = data.Similar.Results;
-    displaySearched(searchedTerm);
+    displaySearched(searchedArray, searchedTerm);
     displaySimilar(resultsList);
 }
 
 function handleSubmit() {
     $(".submit").click(function(event) {
         event.preventDefault();
-        const response = $(".response").val();
+        response = $(".response").val();
         $(".response").val("");
         $(".results").html("");
         $(".results").prop('hidden', false)
