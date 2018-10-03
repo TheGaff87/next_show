@@ -1,44 +1,45 @@
+/* using global variables sparingly to store data that needs to be available for multiple functions */
 let tasteDiveResults;
 let response;
 
 function getDataFromTasteDive(searchTerm, callback) {
-  const settings = {
-    url: "https://tastedive.com/api/similar",
-    data: {
-      q: "show:" + searchTerm,
-      k: "320256-test-VZMF4T55",
-      type: "shows",
-      info: 1
-    },
-    dataType: 'jsonp',
-    type: 'GET',
-    success: callback
-  };
+    const settings = {
+        url: "https://tastedive.com/api/similar",
+        data: {
+            q: "show:" + searchTerm,
+            k: "320256-test-VZMF4T55",
+            type: "shows",
+            info: 1
+        },
+        dataType: 'jsonp',
+        type: 'GET',
+        success: callback
+    };
 
-  $.ajax(settings);
+    $.ajax(settings);
 }
 
 function getDataFromUTelly(searchTerm, callback) {
     const settings = {
-      url: "https://utelly-tv-shows-and-movies-availability-v1.p.mashape.com/lookup",
-      data: {
-        country: "us",
-        term: searchTerm
-      },
-      headers: {
-        "X-Mashape-Key": "bhHt3a0Z4kmshbCmYdWKvoFI8Fa7p1Hx1PujsnNrszpNIQ2xUK",
-      },
-      dataType: 'json',
-      type: 'GET',
-      success: callback
+        url: "https://utelly-tv-shows-and-movies-availability-v1.p.mashape.com/lookup",
+        data: {
+            country: "us",
+            term: searchTerm
+        },
+        headers: {
+            "X-Mashape-Key": "bhHt3a0Z4kmshbCmYdWKvoFI8Fa7p1Hx1PujsnNrszpNIQ2xUK",
+        },
+        dataType: 'json',
+        type: 'GET',
+        success: callback
     };
-  
+
     $.ajax(settings);
-  }
+}
 
 function displaySearched(array, name) {
-    if (name.Type !== "unknown" && array.Results.length > 0 ) {
-        $(".results").append(`<p class="js-searched"><h3>If you like <a href="${name.wUrl}" target="_blank">${name.Name}</a>, you might also like these shows:</h3></p>`)
+    if (name.Type !== "unknown" && array.Results.length > 0) {
+        $(".results").append(`<p class="js-searched"><h3>If you like <a href="${name.wUrl}" target="_blank">${name.Name}</a>, you might also like these ${array.Results.length} shows:</h3></p>`)
     } else {
         $(".results").append(`<p class="js-not-found"><h3>Sorry, I couldn't find <span class="js-response-term">${response}</span>. Please try again.</h3></p>`)
     }
@@ -47,8 +48,8 @@ function displaySearched(array, name) {
 function displaySimilar(query) {
     for (i = 0; i < query.length; i++) {
         $(".results").append(`
-        <div class="${i}">
-            <button class="${i}" type="button" data-featherlight="#mylightbox${i}">${query[i].Name}</button>
+        <div class="${i} js-results-div">
+            <button class="${i} js-result-button" type="button" data-featherlight="#mylightbox${i}">${query[i].Name}</button>
             <article class="${i} hidden col-12" id="mylightbox${i}">
                 <p class="js-wiki col-6">${query[i].wTeaser}<br><br>
                 <a href="${query[i].wUrl}" target="_blank">Read more about ${query[i].Name} on Wikipedia</a></p>
@@ -58,20 +59,21 @@ function displaySimilar(query) {
     }
 }
 
-function dataHandler (data) {
+/* intermediate function to ensure second API call executes after data from first API call has been received */
+function dataHandler(data) {
     tasteDiveResults = data.Similar.Results;
     displayResults(data);
     processResults(tasteDiveResults);
 }
 
 function processResults(data) {
-  for (i=0; i < tasteDiveResults.length; i++) {
-    getDataFromUTelly(data[i].Name, displayWhereWatch);
-  }
+    for (i = 0; i < tasteDiveResults.length; i++) {
+        getDataFromUTelly(data[i].Name, displayWhereWatch);
+    }
 }
 
 function displayWhereWatch(data) {
-    const correctEl = $("button:contains('" + data.term +"')").parent().children("article");
+    const correctEl = $("button:contains('" + data.term + "')").parent().children("article");
     const watchText = `<p class="js-where-watch col-12">Watch this show on: </p>`;
     const currentItem = data.results[0].locations;
     if (currentItem != undefined) {
@@ -81,7 +83,7 @@ function displayWhereWatch(data) {
     const amazonPrime = "amazon_prime.jpg";
     const amazonInstant = "amazon_instant.png"
     const netflix = "netflix.png";
-    for (i = 0; i<currentItem.length; i++) {
+    for (i = 0; i < currentItem.length; i++) {
         let img = $(`<img>`);
         if (currentItem[i].display_name === "iTunes") {
             img.attr("src", itunes);
@@ -98,7 +100,7 @@ function displayWhereWatch(data) {
         }
         correctEl.children(".js-where-watch").append(`<a href="${currentItem[i].url}" target="_blank" class="${currentItem[i].name}"></a>`)
         correctEl.children(".js-where-watch").children("." + currentItem[i].name).append(img);
-        }
+    }
 }
 
 function displayResults(data) {
@@ -110,13 +112,17 @@ function displayResults(data) {
 }
 
 function handleSubmit() {
-    $(".submit").click(function(event) {
+    $(".submit").click(function (event) {
         event.preventDefault();
         response = $(".response").val();
         $(".response").val("");
         $(".results").html("");
-        $(".results").prop('hidden', false)
-        getDataFromTasteDive(response, dataHandler);
+        $(".results").prop('hidden', false);
+        if (response.length > 0) {
+            getDataFromTasteDive(response, dataHandler);
+        } else {
+            $(".results").append(`<p class="js-required">Please enter a TV show.</p>`);
+        }
     })
 }
 

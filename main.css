@@ -40,17 +40,23 @@ h1, h2 {
     font-family: 'Merienda One', cursive;
 }
 
+h3 {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+}
+
 header {
-    background-color: #2718c7;
+    background-color: #4138ad;
     color: white;
 }
 
-a {
+h3 > a {
     color: #2718c7;
     text-decoration: none;
 }
 
-a:hover {
+h3 > a:hover {
     background-color: #2718c7;
     color: white;
 }
@@ -63,16 +69,26 @@ a:hover {
     margin-bottom: 3em;
 }
 
-.js-response-term {
+.js-response-term, .js-required {
     color: red;
-    font-weight: bold;
+    font-weight: bolder;
+}
+
+.js-required {
+    margin-top: 2em;
+    font-size: 2em;
 }
 
 .submit {
     display: block;
-    margin-top: 1em;
+    margin-top: 2em;
     margin-left: auto;
     margin-right: auto;
+    background-color: #2718c7;
+    color: white;
+    width: 100px;
+    height: 50px;
+    font-size: 1.25em;
 }
 
 button[type="button"] {
@@ -111,15 +127,45 @@ iframe {
 
 img {
     width: 100px;
-    height: 3em;
+    height: 2em;
 }
 
-.js-results-div {
-    width: 100%;
+.js-results-div > * {
+    vertical-align: middle;
+}
+
+.js-results-div:nth-child(odd) .js-result-button {
+    background-color: white;
+    color: #2718c7;
+    border: 1px #2718c7 solid;
+}
+
+.js-results-div:nth-child(even) .js-result-button {
+    background-color: #2718c7;
+    color: white;
+    border: 1px white solid;
 }
 
 input {
     width: 100%;
+    height: 35px;
+    padding: 5px;
+}
+
+.js-result-button {
+    font-size: 1.25em;
+    width: 175px;
+    height: 100px;
+    transition: width 1s, height 1s;
+}
+
+.js-result-button:hover {
+    width: 200px;
+    height: 125px;
+}
+
+.results {
+    text-align: center;
 }
 
 @media only screen and (min-width: 560px) {
