@@ -9,7 +9,7 @@ https://thegaff87.github.io/next_show/
 
 ### Screenshot of landing page: ![Landing Page](/landing_page.png)
 
-### Screenshot of results page: ![Results Page](/results_page.png)
+
 
 ### Screenshot of show description lightbox: ![Show Description](/show_description.png)
 
