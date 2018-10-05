@@ -73,7 +73,11 @@ function processResults(data) {
 }
 
 function displayShowImg(data) {
-    const correctDiv = $("button:contains('" + data.term + "')").parent();
+    //const correctDiv = $("button:contains('" + data.term + "')").parent();
+    const correctButton = $("button").filter(function() {
+        return $(this).text() === data.term
+    });
+    const correctDiv = correctButton.parent();
     let showImg = $(`<img class="js-show-img">`);
     if (data.results.length > 0) {
         const photoUrl = data.results[0].picture;
