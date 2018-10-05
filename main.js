@@ -73,7 +73,6 @@ function processResults(data) {
 }
 
 function displayShowImg(data) {
-    //const correctDiv = $("button:contains('" + data.term + "')").parent();
     const correctButton = $("button").filter(function() {
         return $(this).text() === data.term
     });
