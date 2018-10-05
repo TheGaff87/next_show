@@ -92,10 +92,6 @@ h3 > a:hover {
     border-radius: 10px;
 }
 
-button[type="button"] {
-    margin: 1em;
-}
-
 .hidden {
     display: none;
 }
@@ -126,25 +122,23 @@ iframe {
     clear: both;
 }
 
-img {
+.js-watch {
     width: 100px;
     height: 2em;
 }
 
+.js-show-img {
+    width: 175px;
+    height: 100px;
+    margin-right: 1em;
+}
+
+.js-results-div {
+    margin: 1em;
+}
+
 .js-results-div > * {
     vertical-align: middle;
-}
-
-.js-results-div:nth-child(odd) .js-result-button {
-    background-color: white;
-    color: #2718c7;
-    border: 1px #2718c7 solid;
-}
-
-.js-results-div:nth-child(even) .js-result-button {
-    background-color: #2718c7;
-    color: white;
-    border: 1px white solid;
 }
 
 input {
@@ -157,13 +151,10 @@ input {
     font-size: 1.25em;
     width: 175px;
     height: 100px;
-    transition: width 1s, height 1s;
-    border-radius: 25px;
-}
-
-.js-result-button:hover {
-    width: 200px;
-    height: 125px;
+    background-color: #2718c7;
+    color: white;
+    margin-right: -4px;
+    
 }
 
 .results {

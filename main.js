@@ -48,8 +48,8 @@ function displaySearched(array, name) {
 function displaySimilar(query) {
     for (i = 0; i < query.length; i++) {
         $(".results").append(`
-        <div class="${i} js-results-div">
-            <button class="${i} js-result-button" type="button" data-featherlight="#mylightbox${i}">${query[i].Name}</button>
+        <div class="${i} js-results-div" data-featherlight="#mylightbox${i}">
+            <button class="${i} js-result-button" type="button">${query[i].Name}</button>
             <article class="${i} hidden col-12" id="mylightbox${i}">
                 <p class="js-wiki col-6">${query[i].wTeaser}<br><br>
                 <a href="${query[i].wUrl}" target="_blank">Read more about ${query[i].Name} on Wikipedia</a></p>
@@ -72,7 +72,22 @@ function processResults(data) {
     }
 }
 
+function displayShowImg(data) {
+    const correctDiv = $("button:contains('" + data.term + "')").parent();
+    let showImg = $(`<img class="js-show-img">`);
+    if (data.results.length > 0) {
+        const photoUrl = data.results[0].picture;
+        showImg.attr("src", photoUrl);
+        showImg.attr("alt", data.term);
+    } else {
+        showImg.attr("src", "sorry.jpg");
+        showImg.attr("alt", "sorry not found");
+    }
+    $(correctDiv).append(showImg);
+}
+
 function displayWhereWatch(data) {
+    displayShowImg(data);
     const correctEl = $("button:contains('" + data.term + "')").parent().children("article");
     const watchText = `<p class="js-where-watch col-12">Watch this show on: </p>`;
     const currentItem = data.results[0].locations;
@@ -84,7 +99,7 @@ function displayWhereWatch(data) {
     const amazonInstant = "amazon_instant.png"
     const netflix = "netflix.png";
     for (i = 0; i < currentItem.length; i++) {
-        let img = $(`<img>`);
+        let img = $(`<img class="js-watch">`);
         if (currentItem[i].display_name === "iTunes") {
             img.attr("src", itunes);
             img.attr("alt", "iTunes logo");
